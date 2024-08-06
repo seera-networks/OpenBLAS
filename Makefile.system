@@ -881,7 +881,7 @@ endif
 # ifeq logical or. GCC or CLANG or LSB
 # http://stackoverflow.com/questions/7656425/makefile-ifeq-logical-or
 ifeq ($(C_COMPILER), $(filter $(C_COMPILER),GCC CLANG LSB))
-CCOMMON_OPT += -Wall
+# CCOMMON_OPT += -Wall
 COMMON_PROF += -fno-inline
 NO_UNINITIALIZED_WARN =  -Wno-uninitialized
 

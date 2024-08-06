@@ -600,7 +600,7 @@ array.f"> */
 
 /*  ===================================================================== */
 /* Subroutine */ void xerbla_array_(char *srname_array__, integer *
-	srname_len__, integer *info, integer srname_array_len)
+	srname_len__, integer *info)
 {
     /* System generated locals */
     integer i__1, i__2, i__3;
