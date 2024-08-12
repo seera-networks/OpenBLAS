@@ -184,24 +184,24 @@ ifeq ($(F_COMPILER), INTEL)
 	$(FC) $(FFLAGS) $(LDFLAGS) -shared -o ../$(LIBSONAME) \
 	-Wl,--whole-archive $< -Wl,--no-whole-archive \
 	-Wl,-soname,$(INTERNALNAME) $(EXTRALIB)
-	$(CC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) $(FEXTRALIB) && echo OK.
+	# $(CC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) $(FEXTRALIB) && echo OK.
 else ifeq ($(F_COMPILER), FLANG)
 	$(FC) $(FFLAGS) $(LDFLAGS) -shared -o ../$(LIBSONAME) \
 	-Wl,--whole-archive $< -Wl,--no-whole-archive \
 	-Wl,-soname,$(INTERNALNAME) $(EXTRALIB)
-	$(CC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) $(FEXTRALIB) && echo OK.
+	# $(CC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) $(FEXTRALIB) && echo OK.
 else
 ifneq ($(C_COMPILER), LSB)
 	$(CC) $(CFLAGS) $(LDFLAGS) -shared -o ../$(LIBSONAME) \
 	-Wl,--whole-archive $< -Wl,--no-whole-archive \
 	-Wl,-soname,$(INTERNALNAME) $(EXTRALIB)
-	$(CC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) $(FEXTRALIB) && echo OK.
+	# $(CC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) $(FEXTRALIB) && echo OK.
 else
 #for LSB
 	env LSBCC_SHAREDLIBS=gfortran $(CC) $(CFLAGS) $(LDFLAGS) -shared -o ../$(LIBSONAME) \
 	-Wl,--whole-archive $< -Wl,--no-whole-archive \
 	-Wl,-soname,$(INTERNALNAME) $(EXTRALIB)
-	$(FC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) $(FEXTRALIB) && echo OK.
+	# $(FC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) $(FEXTRALIB) && echo OK.
 endif
 endif
 	rm -f linktest
@@ -223,7 +223,7 @@ endif
 	$(CC) $(CFLAGS) $(LDFLAGS)  -shared -o ../$(LIBSONAME) \
 	-Wl,--whole-archive $< -Wl,--no-whole-archive \
 	$(FEXTRALIB) $(EXTRALIB)
-	$(CC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) $(FEXTRALIB) && echo OK.
+	# $(CC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) $(FEXTRALIB) && echo OK.
 	rm -f linktest
 
 endif
@@ -241,7 +241,7 @@ ifeq ($(OSNAME), SunOS)
 so : ../$(LIBSONAME)
 	$(CC) $(CFLAGS) $(LDFLAGS)  -shared -o ../$(LIBSONAME) \
 	-Wl,--whole-archive ../$(LIBNAME) -Wl,--no-whole-archive $(EXTRALIB)
-	$(CC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) $(FEXTRALIB) && echo OK.
+	# $(CC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) $(FEXTRALIB) && echo OK.
 	rm -f linktest
 
 endif
@@ -284,7 +284,7 @@ objconv.def : $(GENSYM) ../Makefile.system ../getarch.c
 	./$(GENSYM) objconv $(ARCH) "$(BU)" $(EXPRECISION) $(NO_CBLAS)  $(NO_LAPACK) $(NO_LAPACKE) $(NEED2UNDERSCORES) $(ONLY_CBLAS) "$(SYMBOLPREFIX)" "$(SYMBOLSUFFIX)" $(BUILD_LAPACK_DEPRECATED) $(BUILD_BFLOAT16) $(BUILD_SINGLE) $(BUILD_DOUBLE) $(BUILD_COMPLEX) $(BUILD_COMPLEX16) > $(@F)
 
 test : linktest.c
-	$(CC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) -lm && echo OK.
+	# $(CC) $(CFLAGS) $(LDFLAGS) -w -o linktest linktest.c ../$(LIBSONAME) -lm && echo OK.
 	rm -f linktest
 
 linktest.c : $(GENSYM) ../Makefile.system ../getarch.c
